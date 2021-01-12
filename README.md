@@ -2,16 +2,16 @@
 
 ## usersテーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| name             | string  | null: false |
-| email            | string  | null: false |
-| password         | string  | null: false |
-| first_name       | string  | NOT NULL    |
-| family_name      | string  | NOT NULL    |
-| first_name_kana  | string  | NOT NULL    |
-| family_name_kana | string  | NOT NULL    |
-| birth_date       | integer | NOT NULL    |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| name               | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| first_name         | string  | NOT NULL                  |
+| family_name        | string  | NOT NULL                  |
+| first_name_kana    | string  | NOT NULL                  |
+| family_name_kana   | string  | NOT NULL                  |
+| birth_date         | date    | NOT NULL                  |
 
 ### Association
 
@@ -20,17 +20,17 @@
 
 ## itemsテーブル
 
-| Column           | Type      | Options            |
-| ---------------- | --------- | ------------------ |
-| goods            | string    | NOT NULL           |
-| explain          | text      | NOT NULL           |
-| category         | string    | NOT NULL           |
-| condition        | string    | NOY NULL           |
-| price            | integer   | NOT NULL           |
-| shopping_charges | integer   | NOT NULL           |
-| shopping_area    | string    | NOT NULL           |
-| days_to_ship     | integer   | NOT NULL           |
-| user             | reference | foreign_keys: true |
+| Column             | Type      | Options            |
+| ------------------ | --------- | ------------------ |
+| goods              | string    | NOT NULL           |
+| explain            | text      | NOT NULL           |
+| category_id        | string    | NOT NULL           |
+| condition_id       | string    | NOY NULL           |
+| price              | integer   | NOT NULL           |
+| shopping_charge_id | integer   | NOT NULL           |
+| shopping_area_id   | string    | NOT NULL           |
+| days_to_ship_id    | integer   | NOT NULL           |
+| user               | reference | foreign_keys: true |
 
 ### Association
 
@@ -57,15 +57,15 @@
 
 ## addressesテーブル
 
-| Column       | Type      | Options            |
-| ------------ | --------- | ------------------ |
-| postal_code  | integer   | NOT NULL           |
-| prefectures  | string    | NOT NULL           |
-| city         | string    | NOT NULL           |
-| address      | string    | NOT NULL           |
-| detail       | string    | NOT NULL           |
-| phone_number | string    | NOT NULL           |
-| purchase     | reference | foreign_keys: true |
+| Column        | Type      | Options            |
+| ------------- | --------- | ------------------ |
+| postal_code   | integer   | NOT NULL           |
+| prefecture_id | string    | NOT NULL           |
+| city          | string    | NOT NULL           |
+| address       | string    | NOT NULL           |
+| detail        | string    | NOT NULL           |
+| phone_number  | string    | NOT NULL           |
+| purchase      | reference | foreign_keys: true |
 
 ### Association
 
