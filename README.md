@@ -2,24 +2,21 @@
 
 ## usersテーブル
 
-| Column           | Type    | Options  |
-| ---------------- | ------- | -------- |
-| name             | string  | NOT NULL |
-| email            | string  | NOT NULL |
-| password         | string  | NOT NULL |
-| password_dummy   | string  | NOT NULL |
-| first_name       | string  | NOT NULL |
-| family_name      | string  | NOT NULL |
-| first_name_kana  | string  | NOT NULL |
-| family_name_kana | string  | NOT NULL |
-| birth_date_year  | integer | NOT NULL |
-| birth_date_month | integer | NOT NULL |
-| birth_date_day   | integer | NOT NULL |
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| name             | string  | null: false |
+| email            | string  | null: false |
+| password         | string  | null: false |
+| first_name       | string  | NOT NULL    |
+| family_name      | string  | NOT NULL    |
+| first_name_kana  | string  | NOT NULL    |
+| family_name_kana | string  | NOT NULL    |
+| birth_date       | integer | NOT NULL    |
 
 ### Association
 
 - has_many :items
-- has_one :purchase
+- belongs_to :purchase
 
 ## itemsテーブル
 
@@ -38,7 +35,12 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- belongs_to :purchase
+- belongs_to_active_hash :category
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shopping_charges
+- belongs_to_active_hash :shopping_area
+- belongs_to_active_hash :days_to_ship
 
 ## purchasesテーブル
 
@@ -46,24 +48,26 @@
 | ------- | --------- | ------------------ |
 | user    | reference | foreign_keys: true |
 | item    | reference | foreign_keys: true |
-| address | reference | foreign_keys: true |
 
 ### Association
 
 - has_one :user
 - has_one :item
+- belongs_to :address
 
 ## addressesテーブル
 
-| Column       | Type    | Options  |
-| ------------ | ------- | -------- |
-| postal_code  | integer | NOT NULL |
-| prefectures  | string  | NOT NULL |
-| city         | string  | NOT NULL |
-| address      | string  | NOT NULL |
-| detail       | string  | NOT NULL |
-| phone_number | integer | NOT NULL |
+| Column       | Type      | Options            |
+| ------------ | --------- | ------------------ |
+| postal_code  | integer   | NOT NULL           |
+| prefectures  | string    | NOT NULL           |
+| city         | string    | NOT NULL           |
+| address      | string    | NOT NULL           |
+| detail       | string    | NOT NULL           |
+| phone_number | string    | NOT NULL           |
+| purchase     | reference | foreign_keys: true |
 
 ### Association
 
 - has_one :purchase
+- belongs_to_active_hash :prefectures
