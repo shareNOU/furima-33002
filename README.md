@@ -7,35 +7,35 @@
 | name               | string  | null: false               |
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
-| first_name         | string  | NOT NULL                  |
-| family_name        | string  | NOT NULL                  |
-| first_name_kana    | string  | NOT NULL                  |
-| family_name_kana   | string  | NOT NULL                  |
-| birth_date         | date    | NOT NULL                  |
+| first_name         | string  | null: false               |
+| family_name        | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| family_name_kana   | string  | null: false               |
+| birth_date         | date    | null: false               |
 
 ### Association
 
 - has_many :items
-- belongs_to :purchase
+- has_many :purchases
 
 ## itemsテーブル
 
-| Column             | Type      | Options            |
-| ------------------ | --------- | ------------------ |
-| goods              | string    | NOT NULL           |
-| explain            | text      | NOT NULL           |
-| category_id        | string    | NOT NULL           |
-| condition_id       | string    | NOY NULL           |
-| price              | integer   | NOT NULL           |
-| shopping_charge_id | integer   | NOT NULL           |
-| shopping_area_id   | string    | NOT NULL           |
-| days_to_ship_id    | integer   | NOT NULL           |
-| user               | reference | foreign_keys: true |
+| Column             | Type      | Options           |
+| ------------------ | --------- | ----------------- |
+| name               | string    | null: false       |
+| explain            | text      | null: false       |
+| category_id        | integer   | null: false       |
+| condition_id       | integer   | null: false       |
+| price              | integer   | null: false       |
+| shopping_charge_id | integer   | null: false       |
+| shopping_area_id   | integer   | null: false       |
+| days_to_ship_id    | integer   | null: false       |
+| user               | reference | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
+- has_one :purchase
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :shopping_charges
@@ -51,21 +51,21 @@
 
 ### Association
 
-- has_one :user
-- has_one :item
+- belongs_to :user
+- belongs_to :item
 - belongs_to :address
 
 ## addressesテーブル
 
-| Column        | Type      | Options            |
-| ------------- | --------- | ------------------ |
-| postal_code   | integer   | NOT NULL           |
-| prefecture_id | string    | NOT NULL           |
-| city          | string    | NOT NULL           |
-| address       | string    | NOT NULL           |
-| detail        | string    | NOT NULL           |
-| phone_number  | string    | NOT NULL           |
-| purchase      | reference | foreign_keys: true |
+| Column        | Type      | Options           |
+| ------------- | --------- | ----------------- |
+| postal_code   | string    | null: false       |
+| prefecture_id | string    | null: false       |
+| city          | string    | null: false       |
+| address       | string    | null: false       |
+| building      | string    |                   |
+| phone_number  | string    | null: false       |
+| purchase      | reference | foreign_key: true |
 
 ### Association
 
