@@ -44,10 +44,10 @@
 
 ## purchasesテーブル
 
-| Column  | Type      | Options            |
-| ------- | --------- | ------------------ |
-| user    | reference | foreign_keys: true |
-| item    | reference | foreign_keys: true |
+| Column  | Type      | Options           |
+| ------- | --------- | ----------------- |
+| user    | reference | foreign_key: true |
+| item    | reference | foreign_key: true |
 
 ### Association
 
