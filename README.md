@@ -53,14 +53,14 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 ## addressesテーブル
 
 | Column        | Type      | Options           |
 | ------------- | --------- | ----------------- |
 | postal_code   | string    | null: false       |
-| prefecture_id | string    | null: false       |
+| prefecture_id | integer   | null: false       |
 | city          | string    | null: false       |
 | address       | string    | null: false       |
 | building      | string    |                   |
@@ -69,5 +69,5 @@
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase
 - belongs_to_active_hash :prefectures
