@@ -103,5 +103,10 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana is invalid")
     end
+    it 'emailに@が含まれていなければ登録できないこと' do
+      @user.email = 'sample.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Email is invalid')
+    end
   end
 end
