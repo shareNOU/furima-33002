@@ -58,5 +58,56 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
+    it "カテゴリーが0のとき出品できない" do
+      @item.category_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 0")
+    end
+    it "商品の状態が0のとき出品できない" do
+      @item.condition_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Condition must be other than 0")
+    end
+    it "配送料の負担が0のとき出品できない" do
+      @item.shopping_charge_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shopping charge must be other than 0")
+    end
+    it "発送元の地域が0のとき出品できない" do
+      @item.shopping_area_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shopping area must be other than 0")
+    end
+    it "発送までの日数が0のとき出品できない" do
+      @item.days_to_ship_id = 0
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Days to ship must be other than 0")
+    end
+    it "価格が全角文字のとき出品できない" do
+      @item.price = "１１１１１１"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
+    end
+    it "価格が半角英数混合のとき出品できない" do
+      @item.price = "1a1a1a"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
+    end
+    it "価格が半角英語のみのとき出品できない" do
+      @item.price = "aaaaaa"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
+    end
+    it "価格が￥299以下のとき出品できない" do
+      @item.price = 299
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
+    end
+    it "価格が￥10000000以上のとき出品できない" do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is out of setting range")
+    end
+
   end
 end
