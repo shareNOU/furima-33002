@@ -46,8 +46,8 @@
 
 | Column  | Type      | Options           |
 | ------- | --------- | ----------------- |
-| user    | reference | foreign_key: true |
-| item    | reference | foreign_key: true |
+| user_id | reference | foreign_key: true |
+| item_id | reference | foreign_key: true |
 
 ### Association
 
@@ -60,7 +60,7 @@
 | Column        | Type      | Options           |
 | ------------- | --------- | ----------------- |
 | postal_code   | string    | null: false       |
-| prefecture_id | integer   | null: false       |
+| shopping_area_id | integer   | null: false       |
 | city          | string    | null: false       |
 | address       | string    | null: false       |
 | building      | string    |                   |
@@ -70,4 +70,4 @@
 ### Association
 
 - belongs_to :purchase
-- belongs_to_active_hash :prefectures
+- belongs_to_active_hash :shopping_area
