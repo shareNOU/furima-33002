@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:create, :index]
   def index 
-    @order_file = OrderFile.new
+    if @item.user.id == current_user.id || @item.purchse.present?
+      redirect_to root_path
+    else
+      @order_file = OrderFile.new
+    end
   end
 
   def create
@@ -18,7 +23,7 @@ class OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order_file).permit(:user_id, :item_id, :postal_code, :shopping_area_id, :city, :address, :building, :number).merge(token: params[:token])
+    params.require(:order_file).permit(:postal_code, :shopping_area_id, :city, :address, :building, :number).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
 
   def pay_item
