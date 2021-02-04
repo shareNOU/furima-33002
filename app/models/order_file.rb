@@ -4,7 +4,7 @@ class OrderFile
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is out of setting range"}
-    validates :shopping_area_id, numericality: { other_than: 0 } do
+    validates :shopping_area_id, numericality: { other_than: 0 }
     validates :city
     validates :address
     validates :number, format: {with:/\A\d{11}\z/, message: "is out of setting range"}
