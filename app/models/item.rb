@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :shopping_area
   belongs_to :days_to_ship
 
+
   has_one_attached :image
   with_options presence: true do
     validates :image
@@ -22,4 +23,5 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
+  has_one :purchase
 end
