@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderFile, type: :model do
   before do
-    @order_file = FactoryBot.build(:order_file)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order_file = FactoryBot.build(:order_file, user_id: @user.id , item_id: @item.id)
+    sleep 0.1
   end
 
   describe "購入できる" do
