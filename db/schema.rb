@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_092055) do
     t.string "address", null: false
     t.string "building"
     t.string "number", null: false
-    t.bigint "purchase_id", null: false
+    t.bigint "purchase_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["purchase_id"], name: "index_addresses_on_purchase_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_092055) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "purchases"
   add_foreign_key "items", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"

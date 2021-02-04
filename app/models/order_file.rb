@@ -4,7 +4,7 @@ class OrderFile
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is out of setting range"}
-    validates :shopping_area_id
+    validates :shopping_area_id, numericality: { other_than: 0 } do
     validates :city
     validates :address
     validates :number, format: {with:/\A\d{11}\z/, message: "is out of setting range"}
@@ -12,11 +12,6 @@ class OrderFile
     validates :user_id
     validates :item_id
   end
-
-  with_options numericality: { other_than: 0 } do
-    validates :shopping_area_id
-  end
-  
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
