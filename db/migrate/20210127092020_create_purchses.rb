@@ -1,6 +1,6 @@
-class CreatePurchses < ActiveRecord::Migration[6.0]
+class CreatePurchases < ActiveRecord::Migration[6.0]
   def change
-    create_table :purchses do |t|
+    create_table :purchases do |t|
       t.references :user, presence: true
       t.references :item, presence: true
       t.timestamps

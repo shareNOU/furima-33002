@@ -9,7 +9,12 @@ RSpec.describe OrderFile, type: :model do
     it "全ての項目が存在するとき" do
       expect(@order_file).to be_valid
     end
+    it "建物名が空でも保存できる" do
+      @order_file.building = ""
+      expect(@order_file).to be_valid
+    end
   end
+
   describe "購入できない" do
     it "郵便番号が空のとき" do
       @order_file.postal_code = nil
@@ -61,11 +66,26 @@ RSpec.describe OrderFile, type: :model do
       @order_file.valid?
       expect(@order_file.errors.full_messages).to include("Shopping area must be other than 0")
     end
-    it "tokenが空では登録できないこと" do
+    it "tokenが空のとき" do
       @order_file.token = nil
       @order_file.valid?
       expect(@order_file.errors.full_messages).to include("Token can't be blank")
-    end  
+    end
+    it "use_idが空のとき" do
+      @order_file.user_id = nil
+      @order_file.valid?
+      expect(@order_file.errors.full_messages).to include("User can't be blank")
+    end
+    it "item_idが空のとき" do
+      @order_file.item_id = nil
+      @order_file.valid?
+      expect(@order_file.errors.full_messages).to include("Item can't be blank")
+    end
+    it "電話番号が半角英数字混合のとき" do
+      @order_file.number = "0a0a0a0a0a0"
+      @order_file.valid?
+      expect(@order_file.errors.full_messages).to include("Number is out of setting range")
+    end
   end
 end
 

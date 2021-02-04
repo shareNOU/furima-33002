@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  belongs_to :purchse
+  belongs_to :purchase
 end

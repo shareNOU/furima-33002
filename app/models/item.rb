@@ -23,6 +23,5 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
-  has_one :order
-  has_one :purchse
+  has_one :purchase
 end

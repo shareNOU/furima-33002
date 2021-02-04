@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:create, :index]
   def index 
-    if @item.user.id == current_user.id || @item.purchse.present?
+    if @item.user.id == current_user.id || @item.purchase.present?
       redirect_to root_path
     else
       @order_file = OrderFile.new
